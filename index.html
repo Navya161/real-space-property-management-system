@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Real Space</title>
+  <link rel="stylesheet" href="script.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🏡 Real Space Property Management System</div>
+    <nav>
+    
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="property.html">Properties</a>
+      <a href="booking.html">Bookings</a>
+      <a href="finance.html">Finance</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="analytics.html">Analytics</a>
+    <div class="user-dropdown">
+    <button class="user-btn">👤 Registered Users ▼</button>
+    <ul id="userNavList" class="user-list"></ul>
+  </div>
+</nav>
+    </nav>
+  </header>
+
+  <main class="hero">
+   
+    <h1>Welcome to Real Space Property Management System</h1>
+    <p>Your smart platform to manage, book, and monitor land & property.</p>
+    <button onclick="location.href='login.html'">Get Started</button>
+  </main>
+
+  <script>
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const userList = document.getElementById("userNavList");
+
+  if (users.length === 0) {
+  
+ const li = document.createElement("li");
+   
+ li.textContent = "No users";
+    userList.appendChild(li);
+  } else {
+    users.forEach(u => {
+      const li = document.createElement("li");
+      li.textContent = u.username;
+      userList.appendChild(li);
+    });
+  }
+</script>
+
+</body>
+
+</html>
