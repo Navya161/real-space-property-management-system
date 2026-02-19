@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Real Space</title>
+  <link rel="stylesheet" href="script.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">🏡 Real Space</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="register.html">Register</a>
+      <a href="property.html">Properties</a>
+      <a href="booking.html">Bookings</a>
+      <a href="finance.html">Finance</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="analytics.html">Analytics</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="vertical-login">
+      <h2>Create Account</h2>
+      <form onsubmit="registerUser(event)">
+        <input type="text" id="regUsername" placeholder="Username" required />
+        <input type="password" id="regPassword" placeholder="Password" required />
+        <button type="submit">Register</button>
+        <p id="registerMessage" style="margin-top:10px; color:green;"></p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+  function registerUser(event) {
+  event.preventDefault();
+  const username = document.getElementById('regUsername').value;
+  const password = document.getElementById('regPassword').value;
+
+  let users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  // Check if user already exists
+  const exists = users.find(u => u.username === username);
+  if (exists) {
+    alert("User already registered!");
+    return;
+  }
+
+  // Add and save new user
+  users.push({ username, password });
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registration successful!");
+  document.getElementById('regUsername').value = '';
+  document.getElementById('regPassword').value = '';
+}
+  
+  </script>
+</body>
+</html>
